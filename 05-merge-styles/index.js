@@ -18,8 +18,8 @@ fs.writeFile(filePath, '', (err) => {
 fs.readdir(srcPath, { withFileTypes: true }, (err, files) => {
   if (err) throw err;
 
-  files.forEach((file) => {
-    if (path.extname(file.name) === '.css') {
+  files.forEach((file, index) => {
+    if (file.isFile() && path.extname(file.name) === '.css') {
       const cssPath = path.join(srcPath, file.name);
       const readStream = fs.createReadStream(cssPath);
 
@@ -31,7 +31,7 @@ fs.readdir(srcPath, { withFileTypes: true }, (err, files) => {
         fs.appendFile(filePath, result, (err) => {
           if (err) throw err;
           
-          console.log(`DONE!`);
+          console.log(`converted: ${index+1} ${(index+1) > 1 ? 'files' : 'file'}.`);
         });
       });
     }
