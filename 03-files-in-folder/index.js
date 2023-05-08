@@ -4,9 +4,7 @@ const path = require('path');
 const folderName = 'secret-folder';
 const pathFolder = path.join(__dirname, folderName);
 
-let counter = 0;
-const startMessage = 'Hello there! Let\'s see what we have here...\n';
-const endMessage = `I checked your folder, there was a ${counter} ${counter > 1 ? 'traitors' : 'traitor'} among it.\n\n`;
+const startMessage = '\nHello there! Let\'s see what we have here...\n\n';
 
 fs.readdir(pathFolder, { withFileTypes : true }, (error, result) => {
   if (error) return console.log(error);
@@ -20,13 +18,11 @@ fs.readdir(pathFolder, { withFileTypes : true }, (error, result) => {
       } 
       if(stat.isFile()){
         const extension = path.extname(filePath);
-        const fileName =  result[i].name
+        const fileName = path.basename(filePath, extension);
         process.stdout.write(`${fileName} - ${extension} - ${Math.floor(stat.size/1024)}kb\n`);
-      } else counter++ 
+      }
     });
-  };
-
-  process.stdout.write(endMessage)
+  }
 });
 
-process.stdout.write(startMessage)
+process.stdout.write(startMessage);
