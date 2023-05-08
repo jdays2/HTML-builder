@@ -19,7 +19,7 @@ fs.readdir(pathFolder, { withFileTypes : true }, (error, result) => {
       } 
       if(stat.isFile()){
         const extension = path.extname(filePath);
-        const fileName =  result[i].name
+        const fileName = path.basename(filePath, extension);
         process.stdout.write(`${fileName} - ${extension} - ${Math.floor(stat.size/1024)}kb\n`);
       } else counter++ 
     });
