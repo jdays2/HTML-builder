@@ -4,7 +4,6 @@ const path = require('path');
 const folderName = 'secret-folder';
 const pathFolder = path.join(__dirname, folderName);
 
-let counter = 0;
 const startMessage = '\nHello there! Let\'s see what we have here...\n\n';
 
 fs.readdir(pathFolder, { withFileTypes : true }, (error, result) => {
@@ -21,9 +20,9 @@ fs.readdir(pathFolder, { withFileTypes : true }, (error, result) => {
         const extension = path.extname(filePath);
         const fileName = path.basename(filePath, extension);
         process.stdout.write(`${fileName} - ${extension} - ${Math.floor(stat.size/1024)}kb\n`);
-      } else counter++ 
+      }
     });
-  };
+  }
 });
 
-process.stdout.write(startMessage)
+process.stdout.write(startMessage);

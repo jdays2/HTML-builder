@@ -1,13 +1,13 @@
-const fs = require("fs");
-const readline = require("readline");
-const path = require("path");
+const fs = require('fs');
+const readline = require('readline');
+const path = require('path');
 
-const filename = "party.txt";
+const filename = 'party.txt';
 const filePath = path.join(__dirname, filename);
 
 const welcomeMessage =
   '"Оставь одежду всяк сюда входящий..."\nГласила табличка на двери в которую вы вошли. Ваши действия?\n\n';
-const exitMessage = "\nВас выгнали...";
+const exitMessage = '\nВас выгнали...';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -19,12 +19,12 @@ const exit = () => {
   process.exit();
 };
 
-fs.writeFile(filePath, "", () => {});
+fs.writeFile(filePath, '', () => {});
 
 process.stdout.write(welcomeMessage);
 
-rl.on("line", (input) => {
-  if (input === "exit") exit();
+rl.on('line', (input) => {
+  if (input === 'exit') exit();
 
   fs.appendFile(filePath, `${input}\n`, (err) => {
     if (err) console.error(err);
@@ -32,4 +32,4 @@ rl.on("line", (input) => {
   });
 });
 
-rl.on("SIGINT", exit);
+rl.on('SIGINT', exit);

@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const existMessage = 'The folder already exists and has been updated!.\n'
-const createMessage = '\nDONE!\n'
+const existMessage = 'The folder already exists and has been updated!.\n';
+const createMessage = '\nDONE!\n';
 
 const srcFolderName = 'files';
 const resFolderName = 'files-copy';
@@ -26,7 +26,7 @@ const copyDir = (src, res) => {
       createDir(src, res);
     }
   });
-}
+};
 
 const createDir = (src, res) => {
   fs.mkdir(res, (err)=>{
@@ -44,11 +44,11 @@ const createDir = (src, res) => {
         } else {
           fs.copyFile(fileSrcPath, fileResPath, (err)=>{
             if(err) throw err;
-          })
+          });
         }
-      })
-    })
-  })
-}
+      });
+    });
+  });
+};
 
-copyDir(srcPath, resPath)
+copyDir(srcPath, resPath);
